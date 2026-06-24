@@ -1,4 +1,4 @@
-## Cloud Native Application - Drug Safety & Monitoring
+# Cloud Native Application - Drug Safety & Monitoring
 
 ---
 ## Project Overview
