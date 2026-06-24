@@ -1,13 +1,4 @@
-# CN-17
-
-## Cloud Native Application - Drug Safety & Monitoring
-
-## Group 171
-- **Ana Rita Mendonça** (55343)
-- **Helio José** (64417)
-- **Joana Carrasqueira** (64414)
-- **Nuno Correia** (58638)
-- **Rui Miguel Martins Costa** (29280)
+# Cloud Native Application - Drug Safety & Monitoring
 
 ---
 ## Project Overview
