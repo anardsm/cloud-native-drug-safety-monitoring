@@ -1,0 +1,6 @@
+flask==2.2.5
+connexion[swagger-ui]==2.14.1
+sqlalchemy==2.0.40
+psycopg2-binary==2.9.9
+python-dotenv==1.0.1
+gunicorn==21.2.0
