@@ -1,0 +1,142 @@
+openapi: 3.0.0
+info:
+  title: Adverse Events Service
+  version: "1.0"
+
+paths:
+  /health:
+    get:
+      summary: Check service status
+      operationId: app.routes.health
+      responses:
+        "200":
+          description: Service is up
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+
+  /drugsEvents:
+    get:
+      summary: List all adverse events
+      operationId: app.routes.list_all
+      responses:
+        "200":
+          description: List of adverse events
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AdverseEvent'
+
+    post:
+      summary: Create a new adverse event
+      operationId: app.routes.create
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AdverseEventCreate'
+      responses:
+        "201":
+          description: Adverse event created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdverseEvent'
+
+  /drugsEvents/{drug_id}:
+    get:
+      summary: Get a single adverse event by ID
+      operationId: app.routes.read_one
+      parameters:
+        - name: drug_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Adverse event found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdverseEvent'
+        "404":
+          description: Not found
+
+    put:
+      summary: Update an adverse event by ID
+      operationId: app.routes.update
+      parameters:
+        - name: drug_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AdverseEventCreate'
+      responses:
+        "200":
+          description: Adverse event updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdverseEvent'
+        "404":
+          description: Not found
+
+    delete:
+      summary: Delete an adverse event by ID
+      operationId: app.routes.delete
+      parameters:
+        - name: drug_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "204":
+          description: Adverse event deleted
+        "404":
+          description: Not found
+
+components:
+  schemas:
+    AdverseEvent:
+      type: object
+      properties:
+        id:
+          type: integer
+        patient_id:
+          type: string
+        severity:
+          type: string
+        description:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+
+    AdverseEventCreate:
+      type: object
+      required:
+        - patient_id
+        - severity
+        - description
+      properties:
+        patient_id:
+          type: string
+        severity:
+          type: string
+        description:
+          type: string
